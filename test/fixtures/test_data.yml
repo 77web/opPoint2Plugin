@@ -1,0 +1,74 @@
+Member:
+  member_1:
+    id: ~
+    name: "OpenPNE君"
+    is_active: 1
+  member_2:
+    id: ~
+    name: "OpenPNE君の友人"
+    is_active: 1
+  member_3:
+    id: ~
+    name: "一般のSNSユーザー"
+    is_active: 1
+  member_4:
+    id: ~
+    name: "OpenPNE君をブロックしているユーザー"
+    is_active: 1
+
+MemberConfig:
+<?php for($i=1;$i<=4;$i++): ?>
+  member_address_<?php echo $i; ?>:
+    name: "pc_address"
+    value: "sns<?php echo $i; ?>@example.com"
+    Member: member_<?php echo $i; ?>
+
+  member_mobile_address_<?php echo $i; ?>:
+    name: "mobile_address"
+    value: "sns<?php echo $i; ?>@example.com"
+    Member: member_<?php echo $i; ?>
+
+  member_password_<?php echo $i; ?>:
+    name: "password"
+    value: "<?php echo md5('password') ?>"
+    Member: member_<?php echo $i; ?>
+
+<?php endfor; ?>
+
+MemberRelationship:
+  member_1_member_2:
+    Member: member_1
+    MemberRelatedByMemberIdFrom: member_2
+    is_friend: 1
+  member_2_member_1:
+    Member: member_2
+    MemberRelatedByMemberIdFrom: member_1
+    is_friend: 1
+  member_1_member_4:
+    Member: member_1
+    MemberRelatedByMemberIdFrom: member_4
+    is_access_block: 1
+
+PointItem:
+  dummy_item:
+    id: 1
+    name: "テスト賞品1"
+    points: 100
+    is_active: 1
+  dummy_item_1000:
+    id: 2
+    name: "テスト賞品2"
+    points: 1000
+    is_active: 1
+  dummy_inactive_item:
+    id: 3
+    name: "テスト賞品3"
+    points: 100
+    is_active: 0
+
+Point:
+  dummy_history:
+    id: 1
+    Member: member_1
+    points: 900
+    

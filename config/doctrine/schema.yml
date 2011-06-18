@@ -1,0 +1,47 @@
+PointSetting:
+  columns:
+    id: { type: integer, primary: true, autoincrement: true }
+    module: { type: string(100) }
+    action: { type: string(100) }
+    caption: { type: string(255) }
+    points: { type: integer(1) }
+
+Point:
+  actAs: [Timestampable]
+  columns:
+    id: { type: integer, primary: true, autoincrement: true }
+    member_id: { type: integer(4), notnull: true }
+    points: { type: integer(4), default: 0 }
+    rest_points: { type: integer(4), default: 0 }
+    expires_at: { type: date, default: null }
+    foreign_table: { type: string(100) }
+    foreign_id: { type: integer }
+    memo: { type: string }
+  relations:
+    Member:
+      onDelete: cascade
+
+PointItem:
+  columns:
+    id: { type: integer, primary: true, autoincrement: true }
+    name: { type: string(255) }
+    points: { type: integer(4) }
+    description: { type: string }
+    is_active: { type: boolean }
+
+
+PointExchange:
+  actAs: [Timestampable]
+  columns:
+    id: { type: integer, primary: true, autoincrement: true }
+    member_id: { type: integer(4), notnull: true }
+    points: { type: integer(4) }
+    point_item_name: { type: string(255) }
+    pref: string(20)
+    address: string
+    tel: string(20)
+    real_name: string(255)
+    has_sent: { type: boolean, notnull: true, default: false }
+  relations:
+    Member:
+      onDelete: cascade

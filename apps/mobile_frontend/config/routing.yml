@@ -1,0 +1,35 @@
+pointExchange_do:
+  url: /pointExchange/:id/do
+  class: sfDoctrineRoute
+  options: { model: PointItem, type: object }
+  param: { module: pointExchange, action: do }
+  requirements:
+    id: \d+
+    sf_method: [post]
+
+pointExchange_form:
+  url: /pointExchange/:id
+  class: sfDoctrineRoute
+  options: { model: PointItem, type: object }
+  param: { module: pointExchange, action: form }
+  requirements:
+    id: \d+
+    sf_method: [get, post]
+
+pointTransfer_do:
+  url: /pointTransfer/:id/do
+  class: sfDoctrineRoute
+  options: { model: Member, type: object }
+  param: { module: pointTransfer, action: do }
+  requirements:
+    id: \d+
+    sf_method: [post]
+
+pointTransfer_form:
+  url: /pointTransfer/:id
+  class: sfDoctrineRoute
+  options: { model: Member, type: object }
+  param: { module: pointTransfer, action: form }
+  requirements:
+    id: \d+
+    sf_method: [get, post]
